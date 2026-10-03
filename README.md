@@ -103,7 +103,6 @@ Les deux cartes sont visibles dans le notebook, en fin d'étape 2 et en fin d'é
 ```
 kayak/
 ├── 01-Plan_your_trip_with_Kayak.ipynb   le notebook, livrable principal
-├── Plan your trip with Kayak.pdf        l'énoncé Jedha
 ├── src/booking_spider.py                la spider Scrapy pour Booking.com
 ├── data/processed/                      les fichiers produits par le notebook
 ├── .env.example                         la liste des variables à renseigner
