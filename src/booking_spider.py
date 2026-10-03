@@ -2,7 +2,7 @@
 Spider Booking.com — collecte des hôtels des destinations du Top-5.
 
 Lancement depuis le notebook :
-    !scrapy runspider booking_spider.py -a cities_csv=data/top5.csv -O data/hotels.json
+    !scrapy runspider src/booking_spider.py -a cities_csv=data/processed/top5.csv -O data/processed/hotels.json
 
 Booking oppose un challenge JavaScript (AWS WAF) qu'une requête HTTP simple ne
 peut pas résoudre. Le cookie `aws-waf-token` est relevé manuellement dans un
@@ -36,7 +36,7 @@ class BookingSpider(scrapy.Spider):
 
     custom_settings = {
         "USER_AGENT": os.getenv("BOOKING_USER_AGENT"),
-        "ROBOTSTXT_OBEY": True,        # Le scraping peut respecter https://www.booking.com/robots.txt  
+        "ROBOTSTXT_OBEY": True,        # robots.txt de Booking respecté : il n'interdit pas les pages de résultats
         "DOWNLOAD_DELAY": 2,            # politesse : une requête toutes les 2 s
         "CONCURRENT_REQUESTS": 1,
         "DEFAULT_REQUEST_HEADERS": {
@@ -48,7 +48,7 @@ class BookingSpider(scrapy.Spider):
         "FEED_EXPORT_ENCODING": "utf-8",
     }
 
-    def __init__(self, cities_csv="data/top5.csv", *args, **kwargs):
+    def __init__(self, cities_csv="data/processed/top5.csv", *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.cities = pd.read_csv(cities_csv)                #initialisation : chargement des villes avant le crawl
         self.waf_token = os.getenv("BOOKING_WAF_TOKEN")      #initialisation : récupération du jeton WAF avant les requêtes
