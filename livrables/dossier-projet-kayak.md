@@ -167,12 +167,3 @@ pour lesquelles il faut collecter les hôtels.
   PostgreSQL classique. Pour toute la France ou l'Europe, il faudrait un entrepôt
   conçu pour l'analyse de gros volumes, comme Amazon Redshift, et paralléliser les
   collectes.
-
-## Les compétences du bloc 1
-
-| Compétence | Ce qui l'atteste dans le projet | Ce qui reste pour l'oral |
-|---|---|---|
-| C1.1 Concevoir une architecture de données robuste, data lake et data warehouse | Bucket S3 à deux couches, brute et exploitable (étape 5). Entrepôt PostgreSQL sur RDS avec un schéma écrit à la main, types explicites, clé primaire et clé étrangère (étape 6). Secrets hors du dépôt, utilisateur IAM dédié. | Pourquoi RDS plutôt que Redshift. Sécurité réseau de l'instance, sauvegardes, ce que serait un cahier des charges. |
-| C1.2 Intégrer le stockage et le calcul distribués pour des volumes massifs | Non couvert : le projet manipule 35 destinations et 125 hôtels. | S3 est distribué par nature. Spark, Redshift et les appels asynchrones seraient la réponse à un passage à l'échelle, non justifié ici. |
-| C1.3 Collecter des données de sources variées par API et scraping, dans le respect du RGPD | Deux API, Nominatim et OpenWeather (étapes 1 et 2). Une spider Scrapy sur Booking.com, avec réglages de politesse et respect du robots.txt (étape 3). Cadre juridique rédigé dans le notebook. Contrôle de qualité de la collecte. | Le contournement de la protection anti-robots et ses limites. |
-| C1.4 Nettoyer et organiser les données dans l'entrepôt par des processus ETL | Nettoyage et renommage des colonnes ambiguës, jointure et contrôles (étape 4). Chargement dans l'ordre des clés étrangères (étape 6). Requêtes de démonstration et inventaire de l'entrepôt (étape 7). | Le dictionnaire des colonnes des deux tables, décrit à l'oral. |
