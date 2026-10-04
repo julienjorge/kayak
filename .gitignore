@@ -16,3 +16,6 @@ env/
 
 # Scrapy
 .scrapy/
+
+# Captures de travail pour les slides
+images/
